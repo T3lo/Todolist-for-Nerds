@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NzFormatEmitEvent } from 'ng-zorro-antd';
+
 import { PriorityEnum, Tag, Task, TaskStatusEnum } from 'src/app/models/task.model';
 import { TagService } from 'src/app/services/tag.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -39,10 +39,6 @@ export class AdvancedTaskComponent implements OnInit {
 
   saveTask(yes: boolean): void {
     this.save.emit(yes);
-  }
-
-  nzEvent(event: NzFormatEmitEvent): void {
-    console.log(event);
   }
 
 }
