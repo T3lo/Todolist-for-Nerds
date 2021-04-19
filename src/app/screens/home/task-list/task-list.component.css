@@ -1,0 +1,33 @@
+.fieldset {
+    background-color: rgb(139, 201, 152);
+    border: 1px solid;
+    border-radius: 5px;
+    width: 500px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.fieldset > legend {
+    background-color: rgb(25, 25, 36);
+    color: #fff;
+    text-align: center;
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.task-list-item {
+    width: 90%;
+    margin: 5%;
+}
+
+.task-list-item > div {
+    width: 100%;
+}
+
+.task-name {
+    background-color: blueviolet;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}

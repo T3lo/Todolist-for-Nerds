@@ -1,0 +1,44 @@
+<div id="home-container">
+    <div id="quick-add" nz-row>
+        <div nz-col nzSpan="5">
+            <nz-input-group [nzAddOnBefore]="quick_task_add_icon">
+                <input nz-input type="text" placeholder="Enter task" [(ngModel)]="quickTask.name" (keyup.enter)="addQuickTask(true)">
+            </nz-input-group>
+            <ng-template #quick_task_add_icon>
+                <button nz-button nzType="primary" (click)="addQuickTask(true)">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>
+                </button>
+            </ng-template>
+        </div>
+        <div nz-col nzSpan="8" nzOffset="1">
+            <div *ngIf="quickTask.name!=''" id="quick-add-extra">
+                <div nz-row>
+                    <div nz-col nzSpan="18">
+                        <nz-range-picker nzShowTime nzFormat="yyyy/MM/dd HH:mm:ss" ngModel
+                            (ngModelChange)="updateTaskDuration($event)"></nz-range-picker>
+                    </div>
+                    <div nz-col nzSpan="6">
+                        <button nz-button nzType="primary" (click)="openAdvancedSettings(quickTask, true)">Advanced</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div nz-row id="task-list">
+        <task-list (viewTask)="openAdvancedSettings($event, false)"></task-list>
+    </div>
+</div>
+
+
+<nz-drawer 
+    id="home-drawer"
+    *ngIf="showAdvancedSettingsFlag"
+    [nzClosable]="false" 
+    [nzVisible]="showAdvancedSettingsFlag" 
+    nzPlacement="top" 
+    nzTitle="Basic Drawer" 
+    (nzOnClose)="closeAdvancedSettings()">
+    <!-- Add extra input details for the task here -->
+    <advanced-task [mode]="viewMode" [task]="selectedTask" (save)="addQuickTask($event); closeAdvancedSettings()"></advanced-task>
+</nz-drawer>

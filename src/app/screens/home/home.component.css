@@ -1,0 +1,19 @@
+#home-container {
+    border: 1px solid;
+    /* width: 100%; */
+    height: 100%;
+    margin: 5px
+}
+
+#quick-add-extra {
+    border: 1px solid;
+}
+
+#task-list {
+    border: 1px solid;
+    height: 500px;
+}
+
+#home-drawer {
+    height: 350px;
+}

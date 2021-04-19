@@ -1,0 +1,42 @@
+<fieldset class="fieldset">
+    <legend>Tasklist</legend>
+    <nz-list *ngIf="tasks.length>0" nzBordered nzSize="small">
+        <nz-list-item class="task-list-item" *ngFor="let task of tasks">
+            <div nz-row>
+                <div nz-col nzSpan="1">
+                    <span *ngIf="task.subTasks.length==0">
+                        <i nz-icon nzType="plus" nzTheme="outline"></i>
+                    </span>
+                </div>
+                <div nz-col nzSpan="5" nzOffset="1" class="task-name" (click)="viewTask(task)">
+                    <span>
+                        {{ task.name }}
+                    </span>
+                </div>
+                <div nz-col nzSpan="5" nzOffset="1" 
+                    [ngStyle]="{
+                        textAlign: 'center',
+                        fontSize: '17px',
+                        backgroundColor: mapping.priorityColour[task.priority],
+                        color: 'white',
+                        border: '1px solid ' + mapping.priorityColour[task.priority], borderRadius: '5px'
+                    }">
+                    {{ task.priority }}
+                </div>
+                <div nz-col nzSpan="8" nzOffset="1">
+                    <nz-progress 
+                        [nzPercent]="task.progress" 
+                        [nzStrokeColor]="mapping.taskStatusColour[task.status]" 
+                        [nzShowInfo]="false"
+                        nzSize="small"></nz-progress>
+                </div>
+                <div nz-col nzSpan="1" nzOffset="1">
+                    <button nz-button nzType="primary" (click)="deleteTask(task.id)">
+                        <i nz-icon nzType="delete" nzTheme="outline"></i>
+                    </button>
+                </div>
+            </div>
+        </nz-list-item>
+    </nz-list>
+    <nz-empty *ngIf="tasks.length==0"></nz-empty>
+</fieldset>
